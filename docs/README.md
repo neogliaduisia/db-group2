@@ -3,17 +3,20 @@ home: true
 actionText: Розпочати →
 actionLink: /intro/
 
-footer: "ECL 2.0 Licensed | Copyright © [YYYY] [Your Name]"
+footer: "ECL 2.0 Licensed | Copyright © 2024 Roman Hulenko"
 ---
 
 
 **Виконали:** 
 
-*студенти [X]-го курсу, групи (шифр групи)* 
+*студент 2-го курсу, групи ІО-з21*
+<span padding-right:5em></span> **Гуленко Роман** <a href="https://t.me/roman_hulenko" target="_blank"> Telegram </a>
 
-**[ім’я ПРІЗВИЩЕ] [Посилання email, tg, fb]**
+*студент 2-го курсу, групи ІО-з21*
+<span padding-right:5em></span> **Фомин Іван** <a href="https://t.me/ivanfomyn" target="_blank"> Telegram </a>
 
-**[ім’я ПРІЗВИЩЕ] [Посилання email, tg, fb]**
+*студент 2-го курсу, групи ІО-з21*
+<span padding-right:5em></span> **Гераськін Нікіта** <a href="https://t.me/mishanya_bounty" target="_blank"> Telegram </a>
 
 
 **Керівник**
