@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Реалізація інформаційного та програмного забезпечення | 4. Система управління проектами</title>
+    <meta name="generator" content="VuePress 1.9.10">
+    <link rel="icon" href="/db-group2/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.5.1/katex.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="description" content="Лабораторні роботи з дисципліни &quot;Розподілені інформаційні системи&quot;">
+    
+    <link rel="preload" href="/db-group2/assets/css/0.styles.72bb8069.css" as="style"><link rel="preload" href="/db-group2/assets/js/app.b5c10f61.js" as="script"><link rel="preload" href="/db-group2/assets/js/2.09c527ae.js" as="script"><link rel="preload" href="/db-group2/assets/js/1.47654c93.js" as="script"><link rel="preload" href="/db-group2/assets/js/38.a7da2a75.js" as="script"><link rel="prefetch" href="/db-group2/assets/js/10.9f620ab6.js"><link rel="prefetch" href="/db-group2/assets/js/13.3ae8467e.js"><link rel="prefetch" href="/db-group2/assets/js/14.94bf8dbf.js"><link rel="prefetch" href="/db-group2/assets/js/15.5a9c9855.js"><link rel="prefetch" href="/db-group2/assets/js/16.7999c04b.js"><link rel="prefetch" href="/db-group2/assets/js/17.7d8a140c.js"><link rel="prefetch" href="/db-group2/assets/js/18.c97a2822.js"><link rel="prefetch" href="/db-group2/assets/js/19.e28a4a11.js"><link rel="prefetch" href="/db-group2/assets/js/20.0369525f.js"><link rel="prefetch" href="/db-group2/assets/js/21.b200c171.js"><link rel="prefetch" href="/db-group2/assets/js/22.67559789.js"><link rel="prefetch" href="/db-group2/assets/js/23.3ec6ef11.js"><link rel="prefetch" href="/db-group2/assets/js/24.9004802f.js"><link rel="prefetch" href="/db-group2/assets/js/25.146cd888.js"><link rel="prefetch" href="/db-group2/assets/js/26.192e6a16.js"><link rel="prefetch" href="/db-group2/assets/js/27.35d6e3a6.js"><link rel="prefetch" href="/db-group2/assets/js/28.24dddadd.js"><link rel="prefetch" href="/db-group2/assets/js/29.c1489666.js"><link rel="prefetch" href="/db-group2/assets/js/3.74fe77c0.js"><link rel="prefetch" href="/db-group2/assets/js/30.b864c423.js"><link rel="prefetch" href="/db-group2/assets/js/31.d900c9c8.js"><link rel="prefetch" href="/db-group2/assets/js/32.7a03a791.js"><link rel="prefetch" href="/db-group2/assets/js/33.e1311da3.js"><link rel="prefetch" href="/db-group2/assets/js/34.8bf5b948.js"><link rel="prefetch" href="/db-group2/assets/js/35.e1fdb70d.js"><link rel="prefetch" href="/db-group2/assets/js/36.6d578e3d.js"><link rel="prefetch" href="/db-group2/assets/js/37.cd0e1a0d.js"><link rel="prefetch" href="/db-group2/assets/js/39.f96666db.js"><link rel="prefetch" href="/db-group2/assets/js/4.afba3b63.js"><link rel="prefetch" href="/db-group2/assets/js/40.67e664a2.js"><link rel="prefetch" href="/db-group2/assets/js/41.5167c572.js"><link rel="prefetch" href="/db-group2/assets/js/5.13cf9a71.js"><link rel="prefetch" href="/db-group2/assets/js/6.50fd2ed2.js"><link rel="prefetch" href="/db-group2/assets/js/7.36307b08.js"><link rel="prefetch" href="/db-group2/assets/js/8.bc7ffb1f.js"><link rel="prefetch" href="/db-group2/assets/js/9.821b8530.js"><link rel="prefetch" href="/db-group2/assets/js/vendors~docsearch.a7214ad1.js">
+    <link rel="stylesheet" href="/db-group2/assets/css/0.styles.72bb8069.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/db-group2/" class="home-link router-link-active"><!----> <span class="site-name">4. Система управління проектами</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/db-group2/" class="nav-link">
+  Початок
+</a></div> <a href="https://github.com/neogliaduisia/db-group2" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/db-group2/" class="nav-link">
+  Початок
+</a></div> <a href="https://github.com/neogliaduisia/db-group2" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/db-group2/intro/" class="sidebar-link">Вступ</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/db-group2/requirements/" class="sidebar-heading clickable"><span>Розроблення загальних вимог до системи</span> <span class="arrow right"></span></a> <!----></section></li><li><a href="/db-group2/use-cases/" class="sidebar-link">Розроблення вимог до функціональности системи</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/db-group2/use-cases/#загальна-схема" class="sidebar-link">Загальна схема</a></li><li class="sidebar-sub-header"><a href="/db-group2/use-cases/#звичаинии-користувач" class="sidebar-link">Звичайний користувач</a></li><li class="sidebar-sub-header"><a href="/db-group2/use-cases/#менеджер" class="sidebar-link">Менеджер</a></li><li class="sidebar-sub-header"><a href="/db-group2/use-cases/#адміністратор" class="sidebar-link">Адміністратор</a></li><li class="sidebar-sub-header"><a href="/db-group2/use-cases/#сценаріі-використання" class="sidebar-link">Сценарії використання</a></li></ul></li><li><a href="/db-group2/design/" class="sidebar-link">Проектування інформаційного забезпечення</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/db-group2/design/#модель-бізнес-об-єктів" class="sidebar-link">Модель бізнес об'єктів</a></li><li class="sidebar-sub-header"><a href="/db-group2/design/#er-модель" class="sidebar-link">ER-модель</a></li><li class="sidebar-sub-header"><a href="/db-group2/design/#реляціина-схема" class="sidebar-link">Реляційна схема</a></li></ul></li><li><a href="/db-group2/software/" aria-current="page" class="active sidebar-link">Реалізація інформаційного та програмного забезпечення</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/db-group2/software/#sql-скрипт-для-створення-бази-даних" class="sidebar-link">SQL-скрипт для створення бази даних</a></li><li class="sidebar-sub-header"><a href="/db-group2/software/#заповнення-початковими-даними-для-prisma" class="sidebar-link">Заповнення початковими даними для Prisma</a></li><li class="sidebar-sub-header"><a href="/db-group2/software/#сервіси-для-управління-даними" class="sidebar-link">Сервіси для управління даними</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/db-group2/software/#налаштування-docker-compose-для-postgresql" class="sidebar-link">Налаштування Docker Compose для PostgreSQL</a></li><li class="sidebar-sub-header"><a href="/db-group2/software/#схема-бази-даних" class="sidebar-link">Схема бази даних</a></li><li class="sidebar-sub-header"><a href="/db-group2/software/#підключення-до-бази-даних" class="sidebar-link">Підключення до бази даних</a></li><li class="sidebar-sub-header"><a href="/db-group2/software/#контролер-обробки-користувачів" class="sidebar-link">Контролер обробки користувачів</a></li><li class="sidebar-sub-header"><a href="/db-group2/software/#сервіс-обробки-користувачів" class="sidebar-link">Сервіс обробки користувачів</a></li><li class="sidebar-sub-header"><a href="/db-group2/software/#dto-для-створення-нових-користувачів" class="sidebar-link">DTO для створення нових користувачів</a></li><li class="sidebar-sub-header"><a href="/db-group2/software/#dto-для-оновлення-існуючих-користувачів" class="sidebar-link">DTO для оновлення існуючих користувачів</a></li><li class="sidebar-sub-header"><a href="/db-group2/software/#модуль-api" class="sidebar-link">Модуль API</a></li><li class="sidebar-sub-header"><a href="/db-group2/software/#запуск-додатку" class="sidebar-link">Запуск додатку</a></li></ul></li></ul></li><li><a href="/db-group2/test/" class="sidebar-link">Тестування працездатності системи</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/db-group2/test/#cтруктура-swagger" class="sidebar-link">Cтруктура Swagger</a></li><li class="sidebar-sub-header"><a href="/db-group2/test/#отримання-користувача-get" class="sidebar-link">Отримання користувача (GET)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/db-group2/test/#успішне-отримання-списку-всіх-користувачів" class="sidebar-link">Успішне отримання списку всіх користувачів</a></li><li class="sidebar-sub-header"><a href="/db-group2/test/#успішне-отримання-даних-одного-користувача" class="sidebar-link">Успішне отримання даних одного користувача</a></li><li class="sidebar-sub-header"><a href="/db-group2/test/#спроба-отримати-дані-неіснуючого-користувача" class="sidebar-link">Спроба отримати дані неіснуючого користувача</a></li></ul></li><li class="sidebar-sub-header"><a href="/db-group2/test/#створення-користувача-post" class="sidebar-link">Створення користувача (POST)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/db-group2/test/#успішне-створення-користувача" class="sidebar-link">Успішне створення користувача</a></li><li class="sidebar-sub-header"><a href="/db-group2/test/#спроба-створити-користувача-з-неповними-даними" class="sidebar-link">Спроба створити користувача з неповними даними</a></li></ul></li><li class="sidebar-sub-header"><a href="/db-group2/test/#оновлення-користувача-put" class="sidebar-link">Оновлення користувача (PUT)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/db-group2/test/#успішне-оновлення-інформаціі-про-користувача" class="sidebar-link">Успішне оновлення інформації про користувача</a></li><li class="sidebar-sub-header"><a href="/db-group2/test/#спроба-оновити-дані-неіснуючого-користувача" class="sidebar-link">Спроба оновити дані неіснуючого користувача</a></li></ul></li><li class="sidebar-sub-header"><a href="/db-group2/test/#видалення-користувача-delete" class="sidebar-link">Видалення користувача (DELETE)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/db-group2/test/#успішне-видалення-користувача-з-системи" class="sidebar-link">Успішне видалення користувача з системи</a></li><li class="sidebar-sub-header"><a href="/db-group2/test/#спроба-видалити-неіснуючого-користувача" class="sidebar-link">Спроба видалити неіснуючого користувача</a></li></ul></li></ul></li><li><a href="/db-group2/conclusion/" class="sidebar-link">Висновки</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="реалізація-інформаціиного-та-програмного-забезпечення"><a href="#реалізація-інформаціиного-та-програмного-забезпечення" class="header-anchor">#</a> Реалізація інформаційного та програмного забезпечення</h1> <p>В рамках проекту розробляється:</p> <h2 id="sql-скрипт-для-створення-бази-даних"><a href="#sql-скрипт-для-створення-бази-даних" class="header-anchor">#</a> SQL-скрипт для створення бази даних</h2> <p><em>migration.sql</em></p> <div class="language-sql extra-class"><pre class="language-sql"><code><span class="token comment">-- CreateEnum</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TYPE</span> <span class="token string">&quot;user_system_role&quot;</span> <span class="token keyword">AS</span> <span class="token keyword">ENUM</span> <span class="token punctuation">(</span><span class="token string">'user'</span><span class="token punctuation">,</span> <span class="token string">'admin'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateEnum</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TYPE</span> <span class="token string">&quot;project_status&quot;</span> <span class="token keyword">AS</span> <span class="token keyword">ENUM</span> <span class="token punctuation">(</span><span class="token string">'active'</span><span class="token punctuation">,</span> <span class="token string">'inactive'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateEnum</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TYPE</span> <span class="token string">&quot;participant_role&quot;</span> <span class="token keyword">AS</span> <span class="token keyword">ENUM</span> <span class="token punctuation">(</span><span class="token string">'author'</span><span class="token punctuation">,</span> <span class="token string">'assignee'</span><span class="token punctuation">,</span> <span class="token string">'reviewer'</span><span class="token punctuation">,</span> <span class="token string">'participant'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateTable</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;users&quot;</span> <span class="token punctuation">(</span>
+    <span class="token string">&quot;id&quot;</span> <span class="token keyword">SERIAL</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;username&quot;</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;password&quot;</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;email&quot;</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;phone&quot;</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;avatar&quot;</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;system_role&quot;</span> <span class="token string">&quot;user_system_role&quot;</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;created_at&quot;</span> <span class="token keyword">TIMESTAMP</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;updated_at&quot;</span> <span class="token keyword">TIMESTAMP</span><span class="token punctuation">,</span>
+
+    <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;users_pkey&quot;</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateTable</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;messages&quot;</span> <span class="token punctuation">(</span>
+    <span class="token string">&quot;id&quot;</span> <span class="token keyword">SERIAL</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;content&quot;</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">240</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;created_at&quot;</span> <span class="token keyword">TIMESTAMP</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;sheduled_at&quot;</span> <span class="token keyword">TIMESTAMP</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+
+    <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;messages_pkey&quot;</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateTable</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;notifications&quot;</span> <span class="token punctuation">(</span>
+    <span class="token string">&quot;user_id&quot;</span> <span class="token keyword">INTEGER</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;message_id&quot;</span> <span class="token keyword">INTEGER</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateTable</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;projects&quot;</span> <span class="token punctuation">(</span>
+    <span class="token string">&quot;id&quot;</span> <span class="token keyword">SERIAL</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;title&quot;</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;status&quot;</span> <span class="token string">&quot;project_status&quot;</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token string">'inactive'</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;start_date&quot;</span> <span class="token keyword">TIMESTAMP</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;end_date&quot;</span> <span class="token keyword">TIMESTAMP</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;created_at&quot;</span> <span class="token keyword">TIMESTAMP</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;updated_at&quot;</span> <span class="token keyword">TIMESTAMP</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;logo&quot;</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;description&quot;</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">4000</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+
+    <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;projects_pkey&quot;</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateTable</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;roles&quot;</span> <span class="token punctuation">(</span>
+    <span class="token string">&quot;id&quot;</span> <span class="token keyword">SERIAL</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;name&quot;</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+
+    <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;roles_pkey&quot;</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateTable</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;permissions&quot;</span> <span class="token punctuation">(</span>
+    <span class="token string">&quot;id&quot;</span> <span class="token keyword">SERIAL</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;rule&quot;</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;created_at&quot;</span> <span class="token keyword">TIMESTAMP</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">,</span>
+
+    <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;permissions_pkey&quot;</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateTable</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;grants&quot;</span> <span class="token punctuation">(</span>
+    <span class="token string">&quot;role_id&quot;</span> <span class="token keyword">INTEGER</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;permission_id&quot;</span> <span class="token keyword">INTEGER</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;created_at&quot;</span> <span class="token keyword">TIMESTAMP</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateTable</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;members&quot;</span> <span class="token punctuation">(</span>
+    <span class="token string">&quot;id&quot;</span> <span class="token keyword">SERIAL</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;user_id&quot;</span> <span class="token keyword">INTEGER</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;project_id&quot;</span> <span class="token keyword">INTEGER</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;role_id&quot;</span> <span class="token keyword">INTEGER</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;created_at&quot;</span> <span class="token keyword">TIMESTAMP</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;updated_at&quot;</span> <span class="token keyword">TIMESTAMP</span><span class="token punctuation">,</span>
+
+    <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;members_pkey&quot;</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateTable</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;tasks&quot;</span> <span class="token punctuation">(</span>
+    <span class="token string">&quot;id&quot;</span> <span class="token keyword">SERIAL</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;title&quot;</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;status&quot;</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;project_id&quot;</span> <span class="token keyword">INTEGER</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;description&quot;</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;deadline&quot;</span> <span class="token keyword">TIMESTAMP</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;created_at&quot;</span> <span class="token keyword">TIMESTAMP</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;updated_at&quot;</span> <span class="token keyword">TIMESTAMP</span><span class="token punctuation">,</span>
+
+    <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;tasks_pkey&quot;</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateTable</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;participants&quot;</span> <span class="token punctuation">(</span>
+    <span class="token string">&quot;id&quot;</span> <span class="token keyword">SERIAL</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;member_id&quot;</span> <span class="token keyword">INTEGER</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;task_id&quot;</span> <span class="token keyword">INTEGER</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;role&quot;</span> <span class="token string">&quot;participant_role&quot;</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;created_at&quot;</span> <span class="token keyword">TIMESTAMP</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">,</span>
+
+    <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;participants_pkey&quot;</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateTable</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;labels&quot;</span> <span class="token punctuation">(</span>
+    <span class="token string">&quot;id&quot;</span> <span class="token keyword">SERIAL</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;name&quot;</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;color&quot;</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+
+    <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;labels_pkey&quot;</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateTable</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;tags&quot;</span> <span class="token punctuation">(</span>
+    <span class="token string">&quot;label_id&quot;</span> <span class="token keyword">INTEGER</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;task_id&quot;</span> <span class="token keyword">INTEGER</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateTable</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;attachments&quot;</span> <span class="token punctuation">(</span>
+    <span class="token string">&quot;id&quot;</span> <span class="token keyword">SERIAL</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;url&quot;</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;format&quot;</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;task_id&quot;</span> <span class="token keyword">INTEGER</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;created_at&quot;</span> <span class="token keyword">TIMESTAMP</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">,</span>
+
+    <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;attachments_pkey&quot;</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateTable</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;reviews&quot;</span> <span class="token punctuation">(</span>
+    <span class="token string">&quot;id&quot;</span> <span class="token keyword">SERIAL</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;task_id&quot;</span> <span class="token keyword">INTEGER</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;participant_id&quot;</span> <span class="token keyword">INTEGER</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;replied_to&quot;</span> <span class="token keyword">INTEGER</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;created_at&quot;</span> <span class="token keyword">TIMESTAMP</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token keyword">CURRENT_TIMESTAMP</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;updated_at&quot;</span> <span class="token keyword">TIMESTAMP</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;content&quot;</span> <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">)</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span><span class="token punctuation">,</span>
+
+    <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;reviews_pkey&quot;</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateIndex</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> <span class="token string">&quot;users_username_key&quot;</span> <span class="token keyword">ON</span> <span class="token string">&quot;users&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;username&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateIndex</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> <span class="token string">&quot;users_email_key&quot;</span> <span class="token keyword">ON</span> <span class="token string">&quot;users&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;email&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateIndex</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> <span class="token string">&quot;users_phone_key&quot;</span> <span class="token keyword">ON</span> <span class="token string">&quot;users&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;phone&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateIndex</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> <span class="token string">&quot;notifications_user_id_message_id_key&quot;</span> <span class="token keyword">ON</span> <span class="token string">&quot;notifications&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;user_id&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;message_id&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateIndex</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> <span class="token string">&quot;projects_title_key&quot;</span> <span class="token keyword">ON</span> <span class="token string">&quot;projects&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;title&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateIndex</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> <span class="token string">&quot;roles_name_key&quot;</span> <span class="token keyword">ON</span> <span class="token string">&quot;roles&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;name&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateIndex</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> <span class="token string">&quot;permissions_rule_key&quot;</span> <span class="token keyword">ON</span> <span class="token string">&quot;permissions&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;rule&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateIndex</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> <span class="token string">&quot;grants_role_id_permission_id_key&quot;</span> <span class="token keyword">ON</span> <span class="token string">&quot;grants&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;role_id&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;permission_id&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateIndex</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> <span class="token string">&quot;members_user_id_project_id_key&quot;</span> <span class="token keyword">ON</span> <span class="token string">&quot;members&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;user_id&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;project_id&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateIndex</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">INDEX</span> <span class="token string">&quot;tasks_project_id_idx&quot;</span> <span class="token keyword">ON</span> <span class="token string">&quot;tasks&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;project_id&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateIndex</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> <span class="token string">&quot;participants_member_id_task_id_key&quot;</span> <span class="token keyword">ON</span> <span class="token string">&quot;participants&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;member_id&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;task_id&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateIndex</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> <span class="token string">&quot;labels_name_key&quot;</span> <span class="token keyword">ON</span> <span class="token string">&quot;labels&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;name&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateIndex</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">UNIQUE</span> <span class="token keyword">INDEX</span> <span class="token string">&quot;tags_label_id_task_id_key&quot;</span> <span class="token keyword">ON</span> <span class="token string">&quot;tags&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;label_id&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;task_id&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateIndex</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">INDEX</span> <span class="token string">&quot;attachments_task_id_idx&quot;</span> <span class="token keyword">ON</span> <span class="token string">&quot;attachments&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;task_id&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- CreateIndex</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">INDEX</span> <span class="token string">&quot;reviews_task_id_idx&quot;</span> <span class="token keyword">ON</span> <span class="token string">&quot;reviews&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;task_id&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- AddForeignKey</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;notifications&quot;</span> <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;notifications_user_id_fkey&quot;</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;user_id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token string">&quot;users&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">CASCADE</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- AddForeignKey</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;notifications&quot;</span> <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;notifications_message_id_fkey&quot;</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;message_id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token string">&quot;messages&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">CASCADE</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- AddForeignKey</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;grants&quot;</span> <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;grants_role_id_fkey&quot;</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;role_id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token string">&quot;roles&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">CASCADE</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- AddForeignKey</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;grants&quot;</span> <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;grants_permission_id_fkey&quot;</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;permission_id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token string">&quot;permissions&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">CASCADE</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- AddForeignKey</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;members&quot;</span> <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;members_user_id_fkey&quot;</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;user_id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token string">&quot;users&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">CASCADE</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- AddForeignKey</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;members&quot;</span> <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;members_project_id_fkey&quot;</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;project_id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token string">&quot;projects&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">CASCADE</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- AddForeignKey</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;members&quot;</span> <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;members_role_id_fkey&quot;</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;role_id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token string">&quot;roles&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">RESTRICT</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- AddForeignKey</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;tasks&quot;</span> <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;tasks_project_id_fkey&quot;</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;project_id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token string">&quot;projects&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">CASCADE</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- AddForeignKey</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;participants&quot;</span> <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;participants_member_id_fkey&quot;</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;member_id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token string">&quot;members&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">CASCADE</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- AddForeignKey</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;participants&quot;</span> <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;participants_task_id_fkey&quot;</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;task_id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token string">&quot;tasks&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">CASCADE</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- AddForeignKey</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;tags&quot;</span> <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;tags_label_id_fkey&quot;</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;label_id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token string">&quot;labels&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">CASCADE</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- AddForeignKey</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;tags&quot;</span> <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;tags_task_id_fkey&quot;</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;task_id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token string">&quot;tasks&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">CASCADE</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- AddForeignKey</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;attachments&quot;</span> <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;attachments_task_id_fkey&quot;</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;task_id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token string">&quot;tasks&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">CASCADE</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- AddForeignKey</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;reviews&quot;</span> <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;reviews_task_id_fkey&quot;</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;task_id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token string">&quot;tasks&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">CASCADE</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- AddForeignKey</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;reviews&quot;</span> <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;reviews_participant_id_fkey&quot;</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;participant_id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token string">&quot;participants&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">CASCADE</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- AddForeignKey</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> <span class="token string">&quot;reviews&quot;</span> <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> <span class="token string">&quot;reviews_replied_to_fkey&quot;</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span><span class="token string">&quot;replied_to&quot;</span><span class="token punctuation">)</span> <span class="token keyword">REFERENCES</span> <span class="token string">&quot;reviews&quot;</span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span> <span class="token keyword">ON</span> <span class="token keyword">DELETE</span> <span class="token keyword">CASCADE</span> <span class="token keyword">ON</span> <span class="token keyword">UPDATE</span> <span class="token keyword">CASCADE</span><span class="token punctuation">;</span>
+
+</code></pre></div><h2 id="заповнення-початковими-даними-для-prisma"><a href="#заповнення-початковими-даними-для-prisma" class="header-anchor">#</a> Заповнення початковими даними для Prisma</h2> <p><em>seeds.ts</em></p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token comment">// prisma/seed.ts</span>
+
+<span class="token keyword">import</span> <span class="token punctuation">{</span> PrismaClient <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@prisma/client'</span><span class="token punctuation">;</span>
+
+<span class="token comment">// initialize Prisma Client</span>
+<span class="token keyword">const</span> prisma <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PrismaClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// create two dummy articles</span>
+
+  <span class="token keyword">await</span> prisma<span class="token punctuation">.</span>user<span class="token punctuation">.</span><span class="token function">upsert</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    where<span class="token operator">:</span> <span class="token punctuation">{</span> username<span class="token operator">:</span> <span class="token string">'Roman'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    update<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    create<span class="token operator">:</span> <span class="token punctuation">{</span>
+      username<span class="token operator">:</span> <span class="token string">'Roman'</span><span class="token punctuation">,</span>
+      password<span class="token operator">:</span> <span class="token string">'2222'</span><span class="token punctuation">,</span>
+      systemRole<span class="token operator">:</span> <span class="token string">'admin'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">await</span> prisma<span class="token punctuation">.</span>user<span class="token punctuation">.</span><span class="token function">upsert</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    where<span class="token operator">:</span> <span class="token punctuation">{</span> username<span class="token operator">:</span> <span class="token string">'Ivan'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    update<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    create<span class="token operator">:</span> <span class="token punctuation">{</span>
+      username<span class="token operator">:</span> <span class="token string">'Ivan'</span><span class="token punctuation">,</span>
+      password<span class="token operator">:</span> <span class="token string">'4321'</span><span class="token punctuation">,</span>
+      systemRole<span class="token operator">:</span> <span class="token string">'admin'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">await</span> prisma<span class="token punctuation">.</span>user<span class="token punctuation">.</span><span class="token function">upsert</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    where<span class="token operator">:</span> <span class="token punctuation">{</span> username<span class="token operator">:</span> <span class="token string">'Mykyta'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    update<span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    create<span class="token operator">:</span> <span class="token punctuation">{</span>
+      username<span class="token operator">:</span> <span class="token string">'Mykyta'</span><span class="token punctuation">,</span>
+      password<span class="token operator">:</span> <span class="token string">'1234'</span><span class="token punctuation">,</span>
+      systemRole<span class="token operator">:</span> <span class="token string">'admin'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// execute the main function</span>
+<span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    process<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">finally</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// close Prisma Client at the end</span>
+    <span class="token keyword">await</span> prisma<span class="token punctuation">.</span><span class="token function">$disconnect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre></div><h2 id="сервіси-для-управління-даними"><a href="#сервіси-для-управління-даними" class="header-anchor">#</a> Сервіси для управління даними</h2> <h3 id="налаштування-docker-compose-для-postgresql"><a href="#налаштування-docker-compose-для-postgresql" class="header-anchor">#</a> Налаштування Docker Compose для PostgreSQL</h3> <div class="language-yml extra-class"><pre class="language-yml"><code><span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">'3.8'</span>
+<span class="token key atrule">services</span><span class="token punctuation">:</span>
+
+  <span class="token key atrule">postgres</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> postgres<span class="token punctuation">:</span><span class="token number">13.5</span>
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> POSTGRES_USER=postgres
+      <span class="token punctuation">-</span> POSTGRES_PASSWORD=postgres
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> postgres<span class="token punctuation">:</span>/var/lib/postgresql/data
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">'5432:5432'</span>
+
+<span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+  <span class="token key atrule">postgres</span><span class="token punctuation">:</span>
+
+</code></pre></div><h3 id="схема-бази-даних"><a href="#схема-бази-даних" class="header-anchor">#</a> Схема бази даних</h3> <div class="language-prisma extra-class"><pre class="language-text"><code>// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = &quot;prisma-client-js&quot;
+}
+
+datasource db {
+  provider = &quot;postgresql&quot;
+  url      = env(&quot;DATABASE_URL&quot;)
+}
+
+enum UserSystemRole {
+  user
+  admin
+
+  @@map(&quot;user_system_role&quot;)
+}
+
+model User {
+  id            Int            @id @default(autoincrement())
+  username      String         @unique @db.VarChar(30)
+  password      String         @db.VarChar(50)
+  email         String?        @unique @db.VarChar(40)
+  phone         String?        @unique @db.VarChar(20)
+  avatar        String?        @db.VarChar(200)
+  systemRole    UserSystemRole @map(&quot;system_role&quot;)
+  createdAt     DateTime       @default(now()) @map(&quot;created_at&quot;) @db.Timestamp()
+  updatedAt     DateTime?      @updatedAt @map(&quot;updated_at&quot;) @db.Timestamp()
+  members       Member[]
+  notifications Notification[]
+
+  @@map(&quot;users&quot;)
+}
+
+model Message {
+  id            Int            @id @default(autoincrement())
+  content       String         @db.VarChar(240)
+  createdAt     DateTime       @default(now()) @map(&quot;created_at&quot;) @db.Timestamp()
+  sheduledAt    DateTime       @map(&quot;sheduled_at&quot;) @db.Timestamp()
+  notifications Notification[]
+
+  @@map(&quot;messages&quot;)
+}
+
+model Notification {
+  userId    Int     @map(&quot;user_id&quot;)
+  messageId Int     @map(&quot;message_id&quot;)
+  users     User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  messages  Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, messageId])
+  @@map(&quot;notifications&quot;)
+}
+
+enum ProjectStatus {
+  active
+  inactive
+
+  @@map(&quot;project_status&quot;)
+}
+
+model Project {
+  id          Int           @id @default(autoincrement())
+  title       String        @unique @db.VarChar(50)
+  status      ProjectStatus @default(inactive)
+  startDate   DateTime      @map(&quot;start_date&quot;) @db.Timestamp()
+  endDate     DateTime?     @map(&quot;end_date&quot;) @db.Timestamp()
+  createdAt   DateTime      @default(now()) @map(&quot;created_at&quot;) @db.Timestamp()
+  updatedAt   DateTime?     @updatedAt @map(&quot;updated_at&quot;) @db.Timestamp()
+  logo        String?       @db.VarChar(200)
+  description String?       @db.VarChar(4000)
+  members     Member[]
+  tasks       Task[]
+
+  @@map(&quot;projects&quot;)
+}
+
+model Roles {
+  id      Int      @id @default(autoincrement())
+  name    String   @unique @db.VarChar(45)
+  grants  Grant[]
+  members Member[]
+
+  @@map(&quot;roles&quot;)
+}
+
+model Permission {
+  id        Int      @id @default(autoincrement())
+  rule      String   @unique @db.VarChar(45)
+  createdAt DateTime @default(now()) @map(&quot;created_at&quot;) @db.Timestamp()
+  grants    Grant[]
+
+  @@map(&quot;permissions&quot;)
+}
+
+model Grant {
+  roleId       Int        @map(&quot;role_id&quot;)
+  permissionId Int        @map(&quot;permission_id&quot;)
+  createdAt    DateTime   @default(now()) @map(&quot;created_at&quot;) @db.Timestamp()
+  roles        Roles      @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permissions  Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@unique([roleId, permissionId])
+  @@map(&quot;grants&quot;)
+}
+
+model Member {
+  id           Int           @id @default(autoincrement())
+  userId       Int           @map(&quot;user_id&quot;)
+  projectId    Int           @map(&quot;project_id&quot;)
+  roleId       Int           @map(&quot;role_id&quot;)
+  createdAt    DateTime      @default(now()) @map(&quot;created_at&quot;) @db.Timestamp()
+  updatedAt    DateTime?     @updatedAt @map(&quot;updated_at&quot;) @db.Timestamp()
+  user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project      Project       @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  roles        Roles         @relation(fields: [roleId], references: [id], onDelete: Restrict)
+  participants Participant[]
+
+  @@unique([userId, projectId])
+  @@map(&quot;members&quot;)
+}
+
+model Task {
+  id           Int           @id @default(autoincrement())
+  title        String        @db.VarChar(50)
+  status       String        @db.VarChar(50)
+  projectId    Int           @map(&quot;project_id&quot;)
+  description  String?       @db.VarChar(500)
+  deadline     DateTime?     @db.Timestamp()
+  createdAt    DateTime      @default(now()) @map(&quot;created_at&quot;) @db.Timestamp()
+  updatedAt    DateTime?     @updatedAt @map(&quot;updated_at&quot;) @db.Timestamp()
+  project      Project       @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  participants Participant[]
+  tags         Tag[]
+  attachments  Attachment[]
+  Reviews      Review[]
+
+  @@index([projectId])
+  @@map(&quot;tasks&quot;)
+}
+
+enum ParticipantRole {
+  author
+  assignee
+  reviewer
+  participant
+
+  @@map(&quot;participant_role&quot;)
+}
+
+model Participant {
+  id        Int             @id @default(autoincrement())
+  memberId  Int             @map(&quot;member_id&quot;)
+  taskId    Int             @map(&quot;task_id&quot;)
+  role      ParticipantRole
+  createdAt DateTime        @default(now()) @map(&quot;created_at&quot;) @db.Timestamp()
+  members   Member          @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  tasks     Task            @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  Reviews   Review[]
+
+  @@unique([memberId, taskId])
+  @@map(&quot;participants&quot;)
+}
+
+model Label {
+  id    Int    @id @default(autoincrement())
+  name  String @unique @db.VarChar(30)
+  color String @db.VarChar(15)
+  tags  Tag[]
+
+  @@map(&quot;labels&quot;)
+}
+
+model Tag {
+  labelId Int   @map(&quot;label_id&quot;)
+  taskId  Int   @map(&quot;task_id&quot;)
+  labels  Label @relation(fields: [labelId], references: [id], onDelete: Cascade)
+  tasks   Task  @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@unique([labelId, taskId])
+  @@map(&quot;tags&quot;)
+}
+
+model Attachment {
+  id        Int      @id @default(autoincrement())
+  url       String   @db.VarChar(200)
+  format    String   @db.VarChar(15)
+  taskId    Int      @map(&quot;task_id&quot;)
+  createdAt DateTime @default(now()) @map(&quot;created_at&quot;) @db.Timestamp()
+  tasks     Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+
+  @@index([taskId])
+  @@map(&quot;attachments&quot;)
+}
+
+model Review {
+  id            Int         @id @default(autoincrement())
+  taskId        Int         @map(&quot;task_id&quot;)
+  participantId Int         @map(&quot;participant_id&quot;)
+  repliedTo     Int?        @map(&quot;replied_to&quot;)
+  createdAt     DateTime    @default(now()) @map(&quot;created_at&quot;) @db.Timestamp()
+  updatedAt     DateTime?   @updatedAt @map(&quot;updated_at&quot;) @db.Timestamp()
+  content       String      @db.VarChar(1000)
+  tasks         Task        @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  participants  Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  reply         Review?     @relation(&quot;ReviewToReview&quot;, fields: [repliedTo], references: [id], onDelete: Cascade)
+  reviews       Review[]    @relation(&quot;ReviewToReview&quot;)
+
+  @@index([taskId])
+  @@map(&quot;reviews&quot;)
+}
+</code></pre></div><h3 id="підключення-до-бази-даних"><a href="#підключення-до-бази-даних" class="header-anchor">#</a> Підключення до бази даних</h3> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> NestFactory <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@nestjs/core&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UsersModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./users/users.module&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> SwaggerModule<span class="token punctuation">,</span> DocumentBuilder <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@nestjs/swagger&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ValidationPipe <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@nestjs/common&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">bootstrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">await</span> NestFactory<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>UsersModule<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  app<span class="token punctuation">.</span><span class="token function">useGlobalPipes</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ValidationPipe</span><span class="token punctuation">(</span><span class="token punctuation">{</span> whitelist<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DocumentBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string">&quot;DB-GROUP2&quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">setDescription</span><span class="token punctuation">(</span><span class="token string">&quot;The DB-GROUP2 API description&quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">setVersion</span><span class="token punctuation">(</span><span class="token string">&quot;0.1&quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> document <span class="token operator">=</span> SwaggerModule<span class="token punctuation">.</span><span class="token function">createDocument</span><span class="token punctuation">(</span>app<span class="token punctuation">,</span> config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  SwaggerModule<span class="token punctuation">.</span><span class="token function">setup</span><span class="token punctuation">(</span><span class="token string">&quot;api&quot;</span><span class="token punctuation">,</span> app<span class="token punctuation">,</span> document<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">await</span> app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">bootstrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="контролер-обробки-користувачів"><a href="#контролер-обробки-користувачів" class="header-anchor">#</a> Контролер обробки користувачів</h3> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>
+  Controller<span class="token punctuation">,</span>
+  Get<span class="token punctuation">,</span>
+  Post<span class="token punctuation">,</span>
+  Body<span class="token punctuation">,</span>
+  Param<span class="token punctuation">,</span>
+  Delete<span class="token punctuation">,</span>
+  Put<span class="token punctuation">,</span>
+  ParseIntPipe<span class="token punctuation">,</span>
+  NotFoundException<span class="token punctuation">,</span>
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@nestjs/common&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UsersService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./users.service&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> CreateUserDTO <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./dto/create-user.dto&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UpdateUserDto <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./dto/update-user.dto&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ApiTags<span class="token punctuation">,</span> ApiCreatedResponse<span class="token punctuation">,</span> ApiOkResponse <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@nestjs/swagger&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserEntity <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./entities/user.entity&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ForbiddenException <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@nestjs/common&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> PrismaClientKnownRequestError <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@prisma/client/runtime/library&quot;</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Controller</span></span><span class="token punctuation">(</span><span class="token string">&quot;users&quot;</span><span class="token punctuation">)</span>
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiTags</span></span><span class="token punctuation">(</span><span class="token string">&quot;users&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">UsersController</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token keyword">private</span> <span class="token keyword">readonly</span> usersService<span class="token operator">:</span> UsersService<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Post</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiCreatedResponse</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token operator">:</span> UserEntity <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token function">create</span><span class="token punctuation">(</span><span class="token decorator"><span class="token at operator">@</span><span class="token function">Body</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> createUserDto<span class="token operator">:</span> CreateUserDTO<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>usersService<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>createUserDto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Get</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiOkResponse</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token operator">:</span> UserEntity <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token function">findAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>usersService<span class="token punctuation">.</span><span class="token function">findAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Get</span></span><span class="token punctuation">(</span><span class="token string">&quot;:id&quot;</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiOkResponse</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token operator">:</span> UserEntity <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token keyword">async</span> <span class="token function">findOne</span><span class="token punctuation">(</span><span class="token decorator"><span class="token at operator">@</span><span class="token function">Param</span></span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">,</span> ParseIntPipe<span class="token punctuation">)</span> id<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> user <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>usersService<span class="token punctuation">.</span><span class="token function">findOne</span><span class="token punctuation">(</span><span class="token operator">+</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>user<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">NotFoundException</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">User with </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>id<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> does not exist.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> user<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Put</span></span><span class="token punctuation">(</span><span class="token string">&quot;:id&quot;</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiOkResponse</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token operator">:</span> UserEntity <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token function">update</span><span class="token punctuation">(</span>
+    <span class="token decorator"><span class="token at operator">@</span><span class="token function">Param</span></span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">,</span> ParseIntPipe<span class="token punctuation">)</span> id<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>
+    <span class="token decorator"><span class="token at operator">@</span><span class="token function">Body</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span> updateUserDto<span class="token operator">:</span> UpdateUserDto
+  <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>usersService<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token operator">+</span>id<span class="token punctuation">,</span> updateUserDto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">Delete</span></span><span class="token punctuation">(</span><span class="token string">&quot;:id&quot;</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiOkResponse</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token operator">:</span> UserEntity <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token keyword">async</span> <span class="token function">remove</span><span class="token punctuation">(</span><span class="token decorator"><span class="token at operator">@</span><span class="token function">Param</span></span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">,</span> ParseIntPipe<span class="token punctuation">)</span> id<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token keyword">await</span> <span class="token keyword">this</span><span class="token punctuation">.</span>usersService<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token operator">+</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>error <span class="token keyword">instanceof</span> <span class="token class-name">PrismaClientKnownRequestError</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">ForbiddenException</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="сервіс-обробки-користувачів"><a href="#сервіс-обробки-користувачів" class="header-anchor">#</a> Сервіс обробки користувачів</h3> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> Injectable <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@nestjs/common&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> CreateUserDTO <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./dto/create-user.dto&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UpdateUserDto <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./dto/update-user.dto&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> PrismaService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;src/prisma/prisma.service&quot;</span><span class="token punctuation">;</span>
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Injectable</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">UsersService</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token keyword">private</span> prisma<span class="token operator">:</span> PrismaService<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+  <span class="token function">create</span><span class="token punctuation">(</span>createUserDto<span class="token operator">:</span> CreateUserDTO<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>prisma<span class="token punctuation">.</span>user<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span> data<span class="token operator">:</span> createUserDto <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">findAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>prisma<span class="token punctuation">.</span>user<span class="token punctuation">.</span><span class="token function">findMany</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">findOne</span><span class="token punctuation">(</span>id<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>prisma<span class="token punctuation">.</span>user<span class="token punctuation">.</span><span class="token function">findUnique</span><span class="token punctuation">(</span><span class="token punctuation">{</span> where<span class="token operator">:</span> <span class="token punctuation">{</span> id <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">update</span><span class="token punctuation">(</span>id<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">,</span> updateUserDto<span class="token operator">:</span> UpdateUserDto<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>prisma<span class="token punctuation">.</span>user<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      where<span class="token operator">:</span> <span class="token punctuation">{</span> id <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      data<span class="token operator">:</span> updateUserDto<span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">remove</span><span class="token punctuation">(</span>id<span class="token operator">:</span> <span class="token builtin">number</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>prisma<span class="token punctuation">.</span>user<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token punctuation">{</span> where<span class="token operator">:</span> <span class="token punctuation">{</span> id <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="dto-для-створення-нових-користувачів"><a href="#dto-для-створення-нових-користувачів" class="header-anchor">#</a> DTO для створення нових користувачів</h3> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> <span class="token punctuation">{</span>
+  IsEmail<span class="token punctuation">,</span>
+  IsEnum<span class="token punctuation">,</span>
+  IsNotEmpty<span class="token punctuation">,</span>
+  IsOptional<span class="token punctuation">,</span>
+  IsString<span class="token punctuation">,</span>
+  MaxLength<span class="token punctuation">,</span>
+<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;class-validator&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UserSystemRole <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@prisma/client&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ApiProperty <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@nestjs/swagger&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">CreateUserDTO</span> <span class="token punctuation">{</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiProperty</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">IsNotEmpty</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">IsString</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">MaxLength</span></span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span>
+  username<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiProperty</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">IsNotEmpty</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">IsString</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">MaxLength</span></span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span>
+  password<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiProperty</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">IsEmail</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">IsOptional</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">IsString</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">MaxLength</span></span><span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">)</span>
+  email<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiProperty</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span> required<span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">IsOptional</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">IsString</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">MaxLength</span></span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span>
+  phone<span class="token operator">?</span><span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">;</span>
+
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">ApiProperty</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token keyword">enum</span><span class="token operator">:</span> UserSystemRole <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token decorator"><span class="token at operator">@</span><span class="token function">IsEnum</span></span><span class="token punctuation">(</span>UserSystemRole<span class="token punctuation">)</span>
+  systemRole<span class="token operator">:</span> UserSystemRole<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="dto-для-оновлення-існуючих-користувачів"><a href="#dto-для-оновлення-існуючих-користувачів" class="header-anchor">#</a> DTO для оновлення існуючих користувачів</h3> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> PartialType <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@nestjs/swagger&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> CreateUserDTO <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./create-user.dto&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">UpdateUserDto</span> <span class="token keyword">extends</span> <span class="token class-name">PartialType</span><span class="token punctuation">(</span>CreateUserDTO<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre></div><h3 id="модуль-api"><a href="#модуль-api" class="header-anchor">#</a> Модуль API</h3> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> Module <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@nestjs/common&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UsersService <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./users.service&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UsersController <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./users.controller&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> PrismaModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;src/prisma/prisma.module&quot;</span><span class="token punctuation">;</span>
+
+<span class="token decorator"><span class="token at operator">@</span><span class="token function">Module</span></span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  controllers<span class="token operator">:</span> <span class="token punctuation">[</span>UsersController<span class="token punctuation">]</span><span class="token punctuation">,</span>
+  providers<span class="token operator">:</span> <span class="token punctuation">[</span>UsersService<span class="token punctuation">]</span><span class="token punctuation">,</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">[</span>PrismaModule<span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">UsersModule</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+</code></pre></div><h3 id="запуск-додатку"><a href="#запуск-додатку" class="header-anchor">#</a> Запуск додатку</h3> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> NestFactory <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@nestjs/core&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> UsersModule <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./users/users.module&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> SwaggerModule<span class="token punctuation">,</span> DocumentBuilder <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@nestjs/swagger&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> ValidationPipe <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;@nestjs/common&quot;</span><span class="token punctuation">;</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">bootstrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token keyword">await</span> NestFactory<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>UsersModule<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  app<span class="token punctuation">.</span><span class="token function">useGlobalPipes</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ValidationPipe</span><span class="token punctuation">(</span><span class="token punctuation">{</span> whitelist<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DocumentBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string">&quot;DB-GROUP2&quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">setDescription</span><span class="token punctuation">(</span><span class="token string">&quot;The DB-GROUP2 API description&quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">setVersion</span><span class="token punctuation">(</span><span class="token string">&quot;0.1&quot;</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> document <span class="token operator">=</span> SwaggerModule<span class="token punctuation">.</span><span class="token function">createDocument</span><span class="token punctuation">(</span>app<span class="token punctuation">,</span> config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  SwaggerModule<span class="token punctuation">.</span><span class="token function">setup</span><span class="token punctuation">(</span><span class="token string">&quot;api&quot;</span><span class="token punctuation">,</span> app<span class="token punctuation">,</span> document<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">await</span> app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">bootstrap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Останнє оновлення:</span> <span class="time">5/22/2024, 1:19:13 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/db-group2/design/" class="prev">
+        Проектування інформаційного забезпечення
+      </a></span> <span class="next"><a href="/db-group2/test/">
+        Тестування працездатності системи
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/db-group2/assets/js/app.b5c10f61.js" defer></script><script src="/db-group2/assets/js/2.09c527ae.js" defer></script><script src="/db-group2/assets/js/1.47654c93.js" defer></script><script src="/db-group2/assets/js/38.a7da2a75.js" defer></script>
+  </body>
+</html>
