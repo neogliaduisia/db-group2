@@ -1,86 +1,227 @@
-# Проєктування системи
+# Проєктування бази даних
 
-
-Вбудовування зображень діаграм здійснюється з використанням сервісу [plantuml.com](https://plantuml.com/). 
-
-В markdown-файлі використовується опис діаграми
-
-```md
-
-<center style="
-    border-radius:4px;
-    border: 1px solid #cfd7e6;
-    box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
-    padding: 1em;"
->
+## Модель бізнес об'єктів
 
 @startuml
 
-participant Client
+entity Message #0096FF
+entity User #0096FF
+entity Notification #0096FF
+entity Role #0096FF
+entity Grant #0096FF
+entity Permission #0096FF
 
-participant SR as "Service Registry"
+entity Label #0096FF
+entity Tag #0096FF
+entity Task #0096FF
+entity Attachment #0096FF
+entity Review #0096FF
+entity Project #0096FF
+entity ProjectTemplate #0096FF
+entity Participant #0096FF
+entity Member #0096FF
 
-participant Service
+entity Role.name
 
-Service -> SR : register
-SR -> SR
-SR --> Service
-...
+entity Permission.role
 
-SR -> Service: heartbeat
-SR <-- Service: health
-...
+entity Message.scheduled_at
+entity Message.content
 
-Client -> SR: find
-Client <-- SR: service endpoint
-Client -> Service: request
-Client <-- Service: response
+entity User.login
+entity User.email
+entity User.system_role
+entity User.password
 
+User "1,1"-r-"0,*" Member
+Member "0,*    "-d-"1,1" Role
+Role "1,1"-d-"     0,*"  Grant
+Grant "0,*"-d-"       1,1" Permission
 
+User "1,1"-d-"0,*" Notification
+Message "1,1   "-u- "0,*" Notification
+
+Role.name -l-* Role
+
+Permission.role -u-* Permission
+
+Message.scheduled_at -u-* Message
+Message.content -u-* Message
+
+User.email -d-* User
+User.login -d-* User
+User.system_role -r-* User
+User.password -u-* User
+
+entity Label.content
+
+entity Task.deadline
+entity Task.title
+entity Task.description
+entity Task.status
+
+entity Attachment.url
+entity Attachment.format
+
+entity Review.content
+
+entity Project.title
+entity Project.description
+entity Project.status
+
+Label "1,1"-d-"0,*" Tag
+Tag "0,*"-d-"1,1" Task
+Task "       1,1"-d-"0,*" Attachment
+Task "1,1"-r-"       0,*" Review
+Participant "1,1"-u-"0,*" Review
+Review "0,*"-"   0,1" Review
+Task "0,*    "-l-"1,1" Project
+Task "1,1 "-d-"0,*" Participant
+ProjectTemplate -u-|> Project
+Member "0,*"-r-"1,1" Project
+Member "1,1"-r-"0,*" Participant
+
+Label.content -d-* Label
+
+Task.deadline -d-* Task
+Task.title -d-* Task
+Task.description -d-* Task
+Task.status -d-* Task
+
+Attachment.url -u-* Attachment
+Attachment.format -u-* Attachment
+
+Review.content -u-* Review
+
+Project.title -d-* Project
+Project.description -d-* Project
+Project.status -d-* Project
 
 @enduml
 
-</center>
-```
-
-яка буде відображена наступним чином
-
-<center style="
-    border-radius:4px;
-    border: 1px solid #cfd7e6;
-    box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
-    padding: 1em;"
->
+## ER-модель
 
 @startuml
 
-    @startuml
+package AccountManage {
+    entity User <<ENTITY>> { 
+              id: int
+              login: text
+              password: text
+              phone: text
+              email: text
+              avatar: image
+              systemRole: enum
+    }
+}
 
-participant Client
+package NotificationManage {
+    entity Notification <<ENTITY>> {
+    }
 
-participant SR as "Service Registry"
+    entity Message <<ENTITY>> {
+        id: int
+        content: text
+        scheduledAt: timestamp
+    }
+}
 
-participant Service
+entity Member <<ENTITY>> {
+    id: int
+}
 
-Service -> SR : register
-SR -> SR
-SR --> Service
-...
+package PermissionManage {
+    entity Role <<ENTITY>> {
+        id: int
+        name: text
+    }
 
-SR -> Service: heartbeat
-SR <-- Service: health
-...
+administrator .d.> Role: instanceOf
+manager .d.> Role: instanceOf
+ordinary_user .d.> Role: instanceOf
 
-Client -> SR: find
-Client <-- SR: service endpoint
-Client -> Service: request
-Client <-- Service: response
+    entity Grant <<ENTITY>> {
+    }
 
+    entity Permission <<ENTITY>> {
+        id: int
+        rule: text
+    }
+}
+entity Participant <<ENTITY>> {
+    id: int
+    role: enum
+}
 
+package ProjectManage {
+    entity Project <<ENTITY>> { 
+              id: int
+              title: text
+              status: enum
+              description: text
+              logo: image
+              startDate: timestamp
+              endDate: timestamp
+    }
+  
+    entity ProjectTemplate <<ENTITY>> {
+    }
+
+}
+
+package TaskManage {
+    entity Task <<ENTITY>> { 
+              id: int
+              title: text
+              status: text
+              description: text
+              deadline: timestamp
+    }
+
+    entity Tag <<ENTITY>> {
+    }
+
+    entity Label <<ENTITY>> {
+               id: int
+               content: text
+    }
+}
+
+entity Attachment <<ENTITY>> {
+                id: int
+                url: image
+                format: enum
+}
+
+package ReviewManage {
+    entity Review <<ENTITY>> { 
+              id: int
+              content: text
+    }
+}
+
+User "1,1" -l-- "0,*" Notification
+User "1,1" -r-- "0,*" Member
+Notification "0,*" -d-- "1,1" Message
+
+Member "0,*" -d-- "1,1" Role
+Member "1,1\n" -r-- "0,*" Participant
+Role "1,1" -d-- "0,*"  Grant
+Grant "0,*" -d-- "1,1" Permission
+
+Project "1,1" -d-- "0,*" Member
+Project o-l- ProjectTemplate
+
+Task "0,*" -r-- "1,1" Project
+Task "1,1" -r-- "0,*" Attachment
+Task "1,1" -d-- "0,*" Tag
+Tag "0,*" -d-- "1,1" Label
+
+Review "0,*" -r-- "1,1" Task
+Review "0,*" -r-- "1,1" Participant
 
 @enduml
 
-</center>
+## Реляційна схема
 
-
-
+![relational_scheme](./relational_scheme.png)
