@@ -14,8 +14,6 @@ import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiTags, ApiCreatedResponse, ApiOkResponse } from '@nestjs/swagger';
 import { UserEntity } from './entities/user.entity';
-import { ForbiddenException } from '@nestjs/common';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 @Controller('users')
 @ApiTags('users')
@@ -46,22 +44,24 @@ export class UsersController {
 
   @Put(':id')
   @ApiOkResponse({ type: UserEntity })
-  update(
+  async update(
     @Param('id', ParseIntPipe) id: string,
     @Body() updateUserDto: UpdateUserDto,
   ) {
+    const user = await this.usersService.findOne(+id);
+    if (!user) {
+      throw new NotFoundException(`User with ${id} does not exist.`);
+    }
     return this.usersService.update(+id, updateUserDto);
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: UserEntity })
   async remove(@Param('id', ParseIntPipe) id: string) {
-    try {
-      return await this.usersService.remove(+id);
-    } catch (error) {
-      if (error instanceof PrismaClientKnownRequestError) {
-        throw new ForbiddenException();
-      }
+    const user = await this.usersService.findOne(+id);
+    if (!user) {
+      throw new NotFoundException(`User with ${id} does not exist.`);
     }
+    return await this.usersService.remove(+id);
   }
 }
