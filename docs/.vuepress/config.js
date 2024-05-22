@@ -69,15 +69,17 @@ module.exports = {
         path: "/software/",
       },
 
-      {
-        title: "Тестування працездатності системи",
-        path: "/test/",
-      },
-      {
-        title: "Висновки",
-        path: "/conclusion/",
-      },
-    ],
+    {
+      title: 'Тестування працездатності системи',
+      path:"/test/"
+    },
+    
+    {
+      title: 'Висновки',
+      path:"/conclusion/"
+    },
+
+  ],
     sidebarDepth: 2,
     displayAllHeaders: true, // Default: false
 
@@ -103,9 +105,8 @@ module.exports = {
     // custom text for edit link. Defaults to "Edit this page"
     // editLinkText: 'Ви можете покращити цю сторінку'
   },
-  title: "4. Система управління проектами",
-  description:
-    'Лабораторні роботи з дисципліни "Розподілені інформаційні системи"',
+  title: '4. Система управління проектами',
+  description: 'Лабораторні роботи з дисципліни "Розподілені інформаційні системи"',
   configureWebpack: {
     resolve: {
       alias: {
